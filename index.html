@@ -151,14 +151,16 @@
 <div class="candle left"><div class="flame"></div></div>
 <div class="candle right"><div class="flame"></div></div>
 
-<div class="card">
-  <h1>Will you be my Valentine, Ankita? 🌙💖</h1>
-  <div class="from">— From Rounak ❤️</div>
-  <button id="yesBtn">Yes ❤️</button>
-  <button id="noBtn">No 💔</button>
+<div id="app">
+  <div class="card" id="questionCard">
+    <h1>Will you be my Valentine, Ankita? 🌙💖</h1>
+    <div class="from">— From Rounak ❤️</div>
+    <button id="yesBtn">Yes ❤️</button>
+    <button id="noBtn">No 💔</button>
+  </div>
 </div>
 
-<!-- 🌹 Romantic Piano Music -->
+<!-- 🎶 Romantic Piano Music -->
 <audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c6b5d4a41.mp3?filename=romantic-piano-112191.mp3" type="audio/mpeg">
 </audio>
@@ -167,10 +169,7 @@
   const noBtn = document.getElementById("noBtn");
   const yesBtn = document.getElementById("yesBtn");
   const bgMusic = document.getElementById("bgMusic");
-
-  document.addEventListener("click", () => {
-    bgMusic.play().catch(() => {});
-  }, { once: true });
+  const app = document.getElementById("app");
 
   function moveNoButton() {
     const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -182,10 +181,15 @@
   noBtn.addEventListener("mouseover", moveNoButton);
   noBtn.addEventListener("touchstart", moveNoButton);
 
-  yesBtn.addEventListener("click", () => {
-    launchPetals();
+  yesBtn.addEventListener("click", async () => {
+    try {
+      bgMusic.volume = 0.7;
+      await bgMusic.play();
+    } catch (e) {
+      console.log("Audio blocked:", e);
+    }
 
-    document.body.innerHTML = `
+    app.innerHTML = `
       <div style="
         height:100vh;
         display:flex;
@@ -225,6 +229,8 @@
         </p>
       </div>
     `;
+
+    launchPetals();
   });
 
   setInterval(() => {
