@@ -1,1 +1,111 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <title>Be My Valentine 💘</title> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <style> * { box-sizing: border-box; } body { margin: 0; height: 100vh; overflow: hidden; font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle at top, #2b1055, #000); display: flex; justify-content: center; align-items: center; color: white; } body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle, rgba(255,180,120,0.18), transparent 70%); animation: flicker 3s infinite alternate; pointer-events: none; } @keyframes flicker { from { opacity: 0.6; } to { opacity: 0.9; } } .card { background: rgba(20,10,30,0.9); padding: 40px; border-radius: 26px; text-align: center; box-shadow: 0 0 40px rgba(255,140,100,0.35); z-index: 5; } h1 { color: #ff9aa2; margin-bottom: 10px; text-shadow: 0 0 12px rgba(255,140,120,0.6); } .from { color: #f3c4a3; margin-bottom: 25px; font-style: italic; } button { font-size: 18px; padding: 14px 30px; border-radius: 30px; border: none; cursor: pointer; } #yesBtn { background: linear-gradient(135deg, #ff6f91, #ff9671); color: white; margin-right: 15px; box-shadow: 0 0 15px rgba(255,120,120,0.6); } #noBtn { background: #444; color: white; position: absolute; } .heart { position: fixed; bottom: -20px; font-size: 22px; animation: floatUp 7s linear infinite; opacity: 0.6; } @keyframes floatUp { to { transform: translateY(-120vh) scale(1.5); opacity: 0; } } .petal { position: fixed; top: -30px; font-size: 26px; animation: fall 7s linear forwards; } @keyframes fall { to { transform: translateY(120vh) rotate(360deg); opacity: 0; } } .candle { position: fixed; bottom: 40px; width: 12px; height: 80px; background: #fff3d1; border-radius: 6px; box-shadow: inset 0 -10px 10px rgba(0,0,0,0.2); z-index: 3; } .candle.left { left: 30px; } .candle.right { right: 30px; } .flame { position: absolute; top: -28px; left: 50%; transform: translateX(-50%); width: 16px; height: 28px; background: radial-gradient(circle, #ffd966 20%, #ff9f1c 60%, transparent 70%); border-radius: 50%; animation: flameFlicker 0.15s infinite alternate; } @keyframes flameFlicker { from { transform: translateX(-50%) scale(1); } to { transform: translateX(-50%) scale(1.1); } } @keyframes heartbeat { 0% { transform: scale(1); } 25% { transform: scale(1.05); } 40% { transform: scale(1); } 60% { transform: scale(1.08); } 100% { transform: scale(1); } } </style> </head> <body> <div class="candle left"><div class="flame"></div></div> <div class="candle right"><div class="flame"></div></div> <div class="card"> <h1>Will you be my Valentine, Ankita? 🌙💖</h1> <div class="from">— From Rounak ❤️</div> <button id="yesBtn">Yes ❤️</button> <button id="noBtn">No 💔</button> </div> <audio id="bgMusic" loop> <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"> </audio> <script> const noBtn = document.getElementById("noBtn"); const yesBtn = document.getElementById("yesBtn"); const bgMusic = document.getElementById("bgMusic"); document.addEventListener("click", () => { bgMusic.play().catch(() => {}); }, { once: true }); function moveNoButton() { const x = Math.random() * (window.innerWidth - noBtn.offsetWidth); const y = Math.random() * (window.innerHeight - noBtn.offsetHeight); noBtn.style.left = x + "px"; noBtn.style.top = y + "px"; } noBtn.addEventListener("mouseover", moveNoButton); noBtn.addEventListener("touchstart", moveNoButton); yesBtn.addEventListener("click", () => { launchPetals(); document.body.innerHTML = <div style=" height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; background: radial-gradient(circle at top, #2b1055, #000); font-family:'Segoe UI', sans-serif; text-align:center; color:white; padding:20px; "> <img src="couple.jpg" alt="Us ❤️" style=" max-width:320px; width:90%; border-radius:22px; box-shadow:0 0 35px rgba(255,150,120,0.7); margin-bottom:25px; animation: heartbeat 1.8s infinite; " /> <h1 style="font-size:2.6rem; color:#ff9aa2;"> Yayyy Ankita 🌹✨ </h1> <p style="font-size:1.5rem;"> Thank you for choosing me as your partner 💖 </p> <p style="font-size:1.2rem; color:#f3c4a3;"> — From Rounak ❤️ </p> </div> ; }); setInterval(() => { const heart = document.createElement("div"); heart.className = "heart"; heart.innerText = "💖"; heart.style.left = Math.random() * 100 + "vw"; document.body.appendChild(heart); setTimeout(() => heart.remove(), 7000); }, 600); function launchPetals() { for (let i = 0; i < 120; i++) { const petal = document.createElement("div"); petal.className = "petal"; petal.innerText = "🌹"; petal.style.left = Math.random() * 100 + "vw"; petal.style.animationDuration = Math.random() * 3 + 4 + "s"; document.body.appendChild(petal); setTimeout(() => petal.remove(), 7000); } } </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💘</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #2b1055, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,180,120,0.18), transparent 70%);
+    animation: flicker 3s infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes flicker {
+    from { opacity: 0.6; }
+    to { opacity: 0.9; }
+  }
+
+  .card {
+    background: rgba(20,10,30,0.9);
+    padding: 40px;
+    border-radius: 26px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(255,140,100,0.35);
+    z-index: 5;
+  }
+
+  h1 {
+    color: #ff9aa2;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px rgba(255,140,120,0.6);
+  }
+
+  .from {
+    color: #f3c4a3;
+    margin-bottom: 25px;
+    font-style: italic;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 14px 30px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #yesBtn {
+    background: linear-gradient(135deg, #ff6f91, #ff9671);
+    color: white;
+    margin-right: 15px;
+    box-shadow: 0 0 15px rgba(255,120,120,0.6);
+  }
+
+  #noBtn {
+    background: #444;
+    color: white;
+    position: absolute;
+  }
+
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 22px;
+    animation: floatUp 7s linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes floatUp {
+    to {
+      transform: translateY(-120vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  .petal {
+    position: fixed;
+    top: -30px;
+    font-size: 26px;
+    animation: fall 7s linear forwards;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(120vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  .candle {
+    position: fixed;
+    bottom: 40px;
+    width: 12px;
